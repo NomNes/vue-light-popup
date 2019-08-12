@@ -22,16 +22,20 @@ export default [
   },
   {
     file: `dist/${name}.common.js`,
-    format: 'cjs'
+    format: 'cjs',
+    vue: { template: { optimizeSSR: true } },
+    external: ['vue', 'disable-body-scroll']
   },
   {
     file: `dist/${name}.esm.js`,
-    format: 'esm'
+    format: 'esm',
+    external: ['vue', 'disable-body-scroll']
   },
   {
     file: `dist/${name}.esm.browser.min.js`,
     format: 'es',
-    transpile: false
+    transpile: false,
+    external: ['vue', 'disable-body-scroll']
   }
 ].map(genConfig)
 
@@ -39,13 +43,17 @@ function genConfig (opts) {
   const config = {
     input: 'src/index.ts',
     plugins: [
-      node(),
+      node({
+        customResolveOptions: {
+          moduleDirectory: 'node_modules'
+        }
+      }),
       cjs(),
       typescript({
         clean: true,
         useTsconfigDeclarationDir: true
       }),
-      vue(),
+      vue(opts.vue),
       replace({
         __VERSION__: version
       })
@@ -56,7 +64,7 @@ function genConfig (opts) {
       banner,
       name: 'VueSimpleCarousel'
     },
-    external: ['Vue', 'disableBodyScroll', 'enableBodyScroll']
+    external: opts.external
   }
 
   if (opts.transpile !== false) {
