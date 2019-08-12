@@ -1,0 +1,55 @@
+{
+  "name": "vue-light-popup",
+  "version": "0.1.0",
+  "description": "Light popup component for Vue.js",
+  "main": "dist/vue-light-popup.common.js",
+  "module": "dist/vue-light-popup.esm.js",
+  "unpkg": "dist/vue-light-popup.js",
+  "jsdelivr": "dist/vue-light-popup.js",
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production"
+  },
+  "typings": "types/index.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NomNes/vue-light-popup.git"
+  },
+  "keywords": [
+    "vue",
+    "component",
+    "popup",
+    "light"
+  ],
+  "author": {
+    "name": "Nikita Umnov"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NomNes/vue-light-popup/issues"
+  },
+  "homepage": "https://github.com/NomNes/vue-light-popup#readme",
+  "devDependencies": {
+    "@types/body-scroll-lock": "^2.6.1",
+    "core-js": "^2.6.5",
+    "rollup": "^1.19.4",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.22.1",
+    "rollup-plugin-vue": "^5.0.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.5.3",
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.0.2",
+    "vue-property-decorator": "^8.2.1",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "body-scroll-lock": "^2.6.4"
+  }
+}
