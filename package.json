@@ -1,6 +1,6 @@
 {
   "name": "vue-light-popup",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Light popup component for Vue.js",
   "main": "dist/vue-light-popup.common.js",
   "module": "dist/vue-light-popup.esm.js",
@@ -34,7 +34,11 @@
   "homepage": "https://github.com/NomNes/vue-light-popup#readme",
   "devDependencies": {
     "@types/body-scroll-lock": "^2.6.1",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/eslint-config-typescript": "^4.0.0",
     "core-js": "^2.6.5",
+    "eslint": "^6.1.0",
+    "eslint-plugin-vue": "^5.2.3",
     "rollup": "^1.19.4",
     "rollup-plugin-buble": "^0.19.8",
     "rollup-plugin-commonjs": "^10.0.2",
@@ -43,6 +47,7 @@
     "rollup-plugin-typescript2": "^0.22.1",
     "rollup-plugin-vue": "^5.0.1",
     "tslib": "^1.10.0",
+    "tslint": "^5.18.0",
     "typescript": "^3.5.3",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",

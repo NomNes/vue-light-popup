@@ -4,21 +4,21 @@ import cjs from 'rollup-plugin-commonjs'
 import node from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import buble from 'rollup-plugin-buble'
-const pkg = require('./package.json');
-const version = process.env.VERSION || pkg.version;
-const name = process.env.name || pkg.name;
-const author = pkg.author.name;
+const pkg = require('./package.json')
+const version = process.env.VERSION || pkg.version
+const name = process.env.name || pkg.name
+const author = pkg.author.name
 const banner =
   `/*!
   * ${name} v${version}
   * (c) ${new Date().getFullYear()} ${author}
   * @license MIT
-  */`;
+  */`
 
 export default [
   {
     file: `dist/${name}.min.js`,
-    format: 'umd',
+    format: 'umd'
   },
   {
     file: `dist/${name}.common.js`,
@@ -35,8 +35,7 @@ export default [
   }
 ].map(genConfig)
 
-
-function genConfig(opts) {
+function genConfig (opts) {
   const config = {
     input: 'src/index.ts',
     plugins: [
@@ -44,7 +43,7 @@ function genConfig(opts) {
       cjs(),
       typescript({
         clean: true,
-        useTsconfigDeclarationDir: true,
+        useTsconfigDeclarationDir: true
       }),
       vue(),
       replace({
@@ -56,8 +55,9 @@ function genConfig(opts) {
       format: opts.format,
       banner,
       name: 'VueSimpleCarousel'
-    }
-  };
+    },
+    external: ['Vue', 'disableBodyScroll', 'enableBodyScroll']
+  }
 
   if (opts.transpile !== false) {
     config.plugins.push(buble())

@@ -5,23 +5,23 @@
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from "vue-property-decorator"
-    // @ts-ignore
-    import {disableBodyScroll, enableBodyScroll} from "body-scroll-lock/lib/bodyScrollLock.es6"
+import { Component, Vue } from 'vue-property-decorator'
+// @ts-ignore
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock/lib/bodyScrollLock.es6'
 
-    @Component<VueLightPopup>({
-        mounted() {
-            disableBodyScroll(this.$el)
-        },
-        beforeDestroy() {
-            enableBodyScroll(this.$el)
-        }
-    })
-    export default class VueLightPopup extends Vue {
-        closePopup() {
-            this.$emit("close");
-        }
-    }
+@Component<VueLightPopup>({
+  mounted () {
+    disableBodyScroll(this.$el)
+  },
+  beforeDestroy () {
+    enableBodyScroll(this.$el)
+  }
+})
+export default class VueLightPopup extends Vue {
+  closePopup () {
+    this.$emit('close')
+  }
+}
 </script>
 
 <style lang="stylus">
