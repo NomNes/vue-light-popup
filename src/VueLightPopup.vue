@@ -1,7 +1,8 @@
 <template lang="pug">
   .vue-light-popup(@click.stop="closePopup")
-    .vue-light-popup-content(@click.stop="() => false" ref="scrollContent")
-      slot
+    .vue-light-popup-content(ref="scrollContent")
+        .vue-light-popup-wrapper(@click.stop="() => false")
+          slot
 </template>
 
 <script lang="ts">
@@ -39,4 +40,8 @@ export default class VueLightPopup extends Vue {
       width 100%
       max-height 100%
       overflow auto
+      -webkit-overflow-scrolling touch
+      .vue-light-popup-wrapper
+        max-width 100%
+        margin auto
 </style>

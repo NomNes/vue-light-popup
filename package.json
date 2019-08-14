@@ -1,6 +1,6 @@
 {
   "name": "vue-light-popup",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Light popup component for Vue.js",
   "main": "dist/vue-light-popup.common.js",
   "module": "dist/vue-light-popup.esm.js",
