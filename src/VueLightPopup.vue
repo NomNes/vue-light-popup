@@ -1,6 +1,6 @@
 <template lang="pug">
   .vue-light-popup(@click.stop="closePopup")
-    .vue-light-popup-content(@click.stop="() => false")
+    .vue-light-popup-content(@click.stop="() => false" ref="scrollContent")
       slot
 </template>
 
@@ -11,10 +11,10 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock/lib/bodySc
 
 @Component<VueLightPopup>({
   mounted () {
-    disableBodyScroll(this.$el)
+    disableBodyScroll(this.$refs.scrollContent)
   },
   beforeDestroy () {
-    enableBodyScroll(this.$el)
+    enableBodyScroll(this.$refs.scrollContent)
   }
 })
 export default class VueLightPopup extends Vue {
@@ -33,10 +33,10 @@ export default class VueLightPopup extends Vue {
     height 100%
     background rgba(0, 0, 0, .5)
     display flex
-    justify-content center
     align-items center
     z-index 1000
     .vue-light-popup-content
+      width 100%
       max-height 100%
       overflow auto
 </style>

@@ -62,7 +62,7 @@ function genConfig (opts) {
       file: opts.file,
       format: opts.format,
       banner,
-      name: 'VueSimpleCarousel'
+      name: 'VueLightPopup'
     },
     external: opts.external
   }
