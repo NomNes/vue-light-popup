@@ -1,5 +1,5 @@
 <template lang="pug">
-  .vue-light-popup(@click.stop="closePopup")
+  .vue-light-popup(@click.stop="closePopup" v-show="show")
     .vue-light-popup-content(ref="scrollContent")
         .vue-light-popup-wrapper(@click.stop="() => false")
           slot
@@ -8,17 +8,23 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 // @ts-ignore
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock/lib/bodyScrollLock.es6'
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock/lib/bodyScrollLock.es6.js'
 
 @Component<VueLightPopup>({
-  mounted () {
-    disableBodyScroll(this.$refs.scrollContent)
-  },
   beforeDestroy () {
-    enableBodyScroll(this.$refs.scrollContent)
+    const target = this.$refs.scrollContent as HTMLElement
+    enableBodyScroll(target)
+  },
+  mounted () {
+    const target = this.$refs.scrollContent as HTMLElement
+    disableBodyScroll(target, { reserveScrollBarGap: true })
+    setTimeout(() => {
+      this.show = true
+    })
   }
 })
 export default class VueLightPopup extends Vue {
+  show = false;
   closePopup () {
     this.$emit('close')
   }
