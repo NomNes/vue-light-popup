@@ -37,7 +37,7 @@ export default class VueLightPopup extends Vue {
     left 0
     top 0
     width 100%
-    height 100%
+    height 100vh
     background rgba(0, 0, 0, .5)
     display flex
     align-items center
