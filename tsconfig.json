@@ -6,13 +6,13 @@
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "declaration": true,
-    "declarationDir": "types",
+    "types": [
+      "webpack-env",
+    ],
     "paths": {
       "@/*": [
         "src/*"
@@ -23,7 +23,9 @@
       "dom",
       "dom.iterable",
       "scripthost"
-    ]
+    ],
+    "declaration": true,
+    "declarationDir": "./dist"
   },
   "include": [
     "src/**/*.ts",
