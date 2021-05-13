@@ -1,7 +1,7 @@
 <template>
-  <div class="vue-light-popup" @click.stop="closePopup" v-show="show">
-    <div class="vue-light-popup__content" ref="scrollContent">
-      <div class="vue-light-popup__wrapper" @click.stop="() => false">
+  <div class="vue-light-popup" @click.stop="closePopup" v-show="show" :style="rootStyle">
+    <div class="vue-light-popup__content" ref="scrollContent" :style="contentStyle">
+      <div class="vue-light-popup__wrapper" @click.stop="() => false" :style="wrapperStyle">
         <slot/>
       </div>
     </div>
@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import {
-  defineComponent, nextTick, onBeforeMount, onBeforeUnmount, ref,
+  defineComponent, nextTick, onBeforeUnmount, onMounted, ref,
 } from 'vue'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
@@ -20,7 +20,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const show = ref(false)
     const scrollContent = ref()
-    onBeforeMount(() => {
+    onMounted(() => {
       disableBodyScroll(scrollContent.value, { reserveScrollBarGap: true })
       nextTick(() => {
         show.value = true
@@ -35,33 +35,28 @@ export default defineComponent({
       closePopup() {
         emit('close')
       },
+      rootStyle: {
+        position: 'fixed',
+        left: '0',
+        top: '0',
+        width: '100%',
+        height: '100vh',
+        background: 'rgba(0, 0, 0, .5)',
+        display: 'flex',
+        alignItems: 'center',
+        zIndex: '1000',
+      },
+      contentStyle: {
+        width: '100%',
+        maxHeight: '100%',
+        overflow: 'auto',
+        '-webkit-overflow-scrolling': 'touch',
+      },
+      wrapperStyle: {
+        maxWidth: '100%',
+        margin: 'auto',
+      },
     }
   },
 })
 </script>
-
-<style>
-.vue-light-popup {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, .5);
-  display: flex;
-  align-items: center;
-  z-index: 1000
-}
-
-.vue-light-popup__content {
-  width: 100%;
-  max-height: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch
-}
-
-.vue-light-popup__wrapper {
-  max-width: 100%;
-  margin: auto
-}
-</style>

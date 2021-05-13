@@ -1,6 +1,6 @@
 module.exports = {
   css: {
-    extract: false,
+    extract: true,
   },
   chainWebpack: (config) => {
     // These are some necessary steps changing the default webpack config of the Vue CLI
